@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package user;
+
+service UserService {
+  rpc getUserInfo (getUserInfoRequest) returns (getUserInfoResponse) {}
+}
+
+message getUserInfoRequest{
+  string accessToken = 1;
+}
+
+message getUserInfoResponse {
+  string id = 1;
+  string email = 2;
+  string createdAt = 3;
+  string updatedAt = 4;
+  string firstName = 5;
+  string lastName = 6;
+  string password = 7;
+}
+
+message User {
+
+}

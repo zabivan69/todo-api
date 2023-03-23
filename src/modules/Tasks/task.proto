@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package task;
+
+service TaskService {
+  rpc createTask (createTaskRequest) returns (createTaskResponse) {}
+  rpc getUserTasks (getUserTasksRequest) returns (getUserTasksResponse) {}
+  rpc updateTask (updateTaskRequest) returns (updateTaskResponse) {}
+  rpc deleteTask (deleteTaskRequest) returns (deleteTaskResponse) {}
+}
+
+message createTaskRequest {
+  string accessToken = 1;
+  string title = 2;
+}
+
+message createTaskResponse {
+  string id = 1;
+  string title = 2;
+  bool isDone = 3;
+  string createdAt = 4;
+  string updatedAt = 5;
+  string userId = 6;
+}
+
+message getUserTasksRequest {
+  string accessToken = 1;
+}
+
+message getUserTasksResponse {
+  repeated Task tasks = 1;
+}
+
+message updateTaskRequest {
+  string accessToken = 1;
+  string id = 2;
+  string title = 3;
+  bool isDone = 4;
+}
+
+message updateTaskResponse {
+  bool success = 1;
+}
+
+message deleteTaskRequest {
+  string accessToken = 1;
+  string id = 2;
+}
+
+message deleteTaskResponse {
+  bool success = 1;
+}
+
+message Task {
+  string id = 1;
+  string title = 2;
+  bool isDone = 3;
+  string createdAt = 4;
+  string updatedAt = 5;
+  string userId = 6;
+}

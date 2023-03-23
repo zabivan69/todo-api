@@ -1,0 +1,108 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateTaskDto {
+  title: String!
+}
+
+input CreateUserDto {
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DeleteTaskGqlDto {
+  id: ID!
+}
+
+type DeleteTaskOutput {
+  """Success boolean"""
+  success: Boolean!
+}
+
+type GetTasksOutput {
+  """Created at"""
+  createdAt: DateTime!
+
+  """Generated maps"""
+  id: ID!
+
+  """Is done"""
+  isDone: Boolean!
+
+  """Title"""
+  title: String!
+
+  """Updated at"""
+  updatedAt: DateTime!
+
+  """User id"""
+  userId: ID!
+}
+
+type LoggedUserOutput {
+  """Generated accessToken of the user"""
+  accessToken: String!
+}
+
+input LoginUserDto {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  createTask(CreateTaskDto: CreateTaskDto!): Task!
+  deleteTask(DeleteTaskDto: DeleteTaskGqlDto!): DeleteTaskOutput!
+  registration(registration: CreateUserDto!): LoggedUserOutput!
+  updateTask(UpdateTaskDto: UpdateTaskDto!): UpdateTaskOutput!
+}
+
+type Query {
+  getUserInfo(id: String!): User!
+  getUserTasks: [GetTasksOutput!]!
+  login(login: LoginUserDto!): LoggedUserOutput!
+  refreshTokens: LoggedUserOutput!
+  signOut: SignOutOutput!
+}
+
+type SignOutOutput {
+  """Success boolean"""
+  success: Boolean!
+}
+
+type Task {
+  createdAt: DateTime!
+  id: ID!
+  isDone: Boolean!
+  title: String!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+input UpdateTaskDto {
+  id: ID!
+  isDone: Boolean
+  title: String
+}
+
+type UpdateTaskOutput {
+  """Success boolean"""
+  success: Boolean!
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  firstName: String!
+  id: ID!
+  lastName: String!
+  password: String!
+  updatedAt: DateTime!
+}
