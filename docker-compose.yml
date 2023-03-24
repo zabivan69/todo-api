@@ -1,7 +1,22 @@
 version: '3.3'
 services:
+  app:
+    env_file: ./.env
+    build: .
+    container_name: todo-api
+    working_dir: /app
+    ports:
+      - ${PORT}:${PORT}
+    depends_on:
+      - postgres
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./src/.:/app/src/.
+    command: 'yarn start:dev'
   postgres:
     image: postgres
+    container_name: ${POSTGRES_DB}
     env_file: ./.env
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
